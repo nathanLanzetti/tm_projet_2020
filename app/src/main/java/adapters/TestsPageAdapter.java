@@ -1,12 +1,16 @@
 package adapters;
 
+import android.app.Activity;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.easyteaching.TestsTabFragment;
 
@@ -15,33 +19,27 @@ import java.util.List;
 
 import model.Cours;
 
-public class TestsPageAdapter extends FragmentStatePagerAdapter {
+public class TestsPageAdapter extends FragmentStateAdapter {
     private List<Cours> cours;
 
-    public TestsPageAdapter(@NonNull FragmentManager fm, int behavior, List<Cours> cours) {
-        super(fm, behavior);
-        //this.numOfTabs = numOfTabs;
+    public TestsPageAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Cours> cours) {
+        super(fragmentManager, lifecycle);
         this.cours = new ArrayList<>(cours);
-        Log.i("PAGE ADPATER COURS", cours.toString());
     }
+
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
         Log.wtf("GETITEM AGAIN", position + "");
         Log.wtf("COURS GETITEM", cours.get(position).getNom_cours());
-        return new TestsTabFragment(cours.get(position));
-    }
-
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-
-        return cours.get(position).getNom_cours();
+        TestsTabFragment testsTabFragment = new TestsTabFragment();
+        testsTabFragment.setCours(cours.get(position));
+        return testsTabFragment;
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return cours.size();
     }
 

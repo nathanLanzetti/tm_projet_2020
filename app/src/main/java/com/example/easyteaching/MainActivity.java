@@ -7,13 +7,16 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -58,16 +61,37 @@ public class MainActivity extends AppCompatActivity {
                 // Set the tabs to fill the entire layout.
                 tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-                final ViewPager viewPager = findViewById(R.id.testsCompletsPager);
+                final ViewPager2 viewPager = findViewById(R.id.testsCompletsPager);
 
-                final TestsPageAdapter adapter = new TestsPageAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,professeursComplet.getCours());
+                final TestsPageAdapter adapter = new TestsPageAdapter(getSupportFragmentManager(), getLifecycle(),professeursComplet.getCours());
                 viewPager.setAdapter(adapter);
+
+                new TabLayoutMediator(tabLayout, viewPager,
+                        (tab, position) -> {
+                            tab.setText(professeursComplet.getCours().get(position).getNom_cours());
+                        }
+                ).attach();
+
+
+                viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        Log.wtf("HEYO PAGE", "Position : "+ position);
+                        //super.onPageSelected(position);
+                        viewPager.setCurrentItem(position);
+                        Log.i("CURRENT PAGE ", viewPager.getCurrentItem() + "");
+                        Toast.makeText(getApplicationContext(), "Selected : " + position, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 // Setting a listener for clicks.
                 //tabLayout.setupWithViewPager(viewPager);
                 //tabLayout.setupWithViewPager();
                 //viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
+
+                /*
                 tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
@@ -86,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+                */
+
                 //tabLayout.setupWithViewPager(viewPager);
 
             }
@@ -146,6 +172,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         */
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     /*

@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
     private void registerUserInPref(Professeurs professeurs) {
         Log.i("MyToken", token);
         Log.i("userID", prefs.getInt("userID", -1) + "");
-        if (token == null){
+        if (token == null || !token.equals(professeurs.getToken())){
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("token", professeurs.getToken());
             editor.putInt("userID", professeurs.getId());

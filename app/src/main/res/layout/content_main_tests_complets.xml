@@ -32,23 +32,21 @@
 
     <!-- app:layout_constraintTop_toBottomOf="@+id/tabLayoutTests" -->
 
-    <androidx.viewpager.widget.ViewPager
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutTests"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="fixed"
+        android:layout_below="@id/tests_header"
+        app:layout_constraintTop_toBottomOf="@+id/tests_header" />
+
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/testsCompletsPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tests_header"
-        tools:ignore="NotSibling">
+        android:layout_below="@id/tabLayoutTests"
+        android:layoutDirection="rtl"
+        tools:ignore="NotSibling" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayoutTests"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            android:layout_below="@id/tests_header"
-            app:layout_constraintTop_toBottomOf="@+id/tests_header" />
-
-        <!-- app:tabIndicatorColor="@color/secondary_pink" -->
-
-    </androidx.viewpager.widget.ViewPager>
 
 </RelativeLayout>

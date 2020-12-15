@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -21,21 +21,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--
     <Spinner
         android:id="@+id/spinner_cours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewTestsComplet"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tests_header" />
+        app:layout_constraintTop_toBottomOf="@+id/tests_header" /> -->
 
-    <include
+    <!-- app:layout_constraintTop_toBottomOf="@+id/tabLayoutTests" -->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewTestsComplet"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/testsCompletsPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tests_header" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@id/tests_header"
+        tools:ignore="NotSibling">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutTests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            android:layout_below="@id/tests_header"
+            app:layout_constraintTop_toBottomOf="@+id/tests_header" />
+
+        <!-- app:tabIndicatorColor="@color/secondary_pink" -->
+
+    </androidx.viewpager.widget.ViewPager>
+
+</RelativeLayout>

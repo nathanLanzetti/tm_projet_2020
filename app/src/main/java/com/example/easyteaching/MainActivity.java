@@ -1,22 +1,29 @@
 package com.example.easyteaching;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import adapters.TestsCompletAdapter;
+import adapters.TestsPageAdapter;
 import api.AuthenticateService;
 import model.Cours;
 import model.Professeurs;
+import model.ProfesseursComplet;
 import model.TestsComplet;
 import repository.AuthenticationRepository;
 import repository.CoursRepository;
@@ -34,6 +41,57 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main_tests_complets);
 
+        SharedPreferences prefs = getSharedPreferences("myapp", MODE_PRIVATE);
+        final int userID = prefs.getInt("userID", 1);
+        Log.i("USER ID", userID + "");
+
+        final ProfesseursCompletRepository professeursCompletRepository = new ProfesseursCompletRepository();
+        professeursCompletRepository.get(userID).observe(this, new Observer<ProfesseursComplet>() {
+            @Override
+            public void onChanged(ProfesseursComplet professeursComplet) {
+                Log.i("Professeurs Fetch", professeursComplet.getProfesseur().toString());
+                Log.i("Professeurs Fetch", "");
+
+                TabLayout tabLayout = findViewById(R.id.tabLayoutTests);
+                // Set the text for each tab.
+
+                // Set the tabs to fill the entire layout.
+                tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+                final ViewPager viewPager = findViewById(R.id.testsCompletsPager);
+
+                final TestsPageAdapter adapter = new TestsPageAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,professeursComplet.getCours());
+                viewPager.setAdapter(adapter);
+                // Setting a listener for clicks.
+                //tabLayout.setupWithViewPager(viewPager);
+                //tabLayout.setupWithViewPager();
+                //viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
+                tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        Log.i("Tab COUNT", tab.parent.getSelectedTabPosition() + "");
+
+                        viewPager.setCurrentItem(tab.parent.getSelectedTabPosition());
+                    }
+
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {
+
+                    }
+
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {
+
+                    }
+                });
+                //tabLayout.setupWithViewPager(viewPager);
+
+            }
+        });
+
+        /*
         final LifecycleOwner context = this;
         recyclerView = findViewById(R.id.recyclerViewTestsComplet);
 
@@ -90,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         */
     }
 
+    /*
     private void setUpRecyclerView(List<TestsComplet> testsComplets, List<Professeurs> professeurs, List<Cours> cours){
 
         Log.i("Recycler", recyclerView.toString());
@@ -99,4 +158,5 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(testsCompletAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+    */
 }

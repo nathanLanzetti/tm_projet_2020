@@ -21,12 +21,12 @@ import model.TestsComplet;
 
 public class TestsCompletAdapter extends RecyclerView.Adapter<TestsCompletAdapter.TestsCompletViewHolder> {
 
-    private final LinkedList<TestsComplet> testsComplets;
+    private LinkedList<TestsComplet> testsComplets;
     private LayoutInflater layoutInflater;
     private final List<Professeurs> professeurs;
-    private final List<Cours> cours;
+    private final Cours cours;
 
-    public TestsCompletAdapter(Context context, LinkedList<TestsComplet> testsComplets, List<Professeurs> professeurs, List<Cours> cours) {
+    public TestsCompletAdapter(Context context, LinkedList<TestsComplet> testsComplets, List<Professeurs> professeurs, Cours cours) {
         Log.wtf("LinkedList Size", testsComplets.size() + "");
         this.testsComplets = testsComplets;
         this.professeurs = professeurs;
@@ -63,8 +63,8 @@ public class TestsCompletAdapter extends RecyclerView.Adapter<TestsCompletAdapte
         TestsComplet tests = testsComplets.get(position);
         Log.i("Linked List Items", getItemCount() + "");
         holder.tvName.setText("Name : " + tests.getTest().getName());
-        holder.tvCours.setText("Subject : "+getCurrentAuthor(tests));
-        holder.tvAuthor.setText("Created by "+getCurrentCours(tests));
+        holder.tvCours.setText("Subject : "+ cours.getNom_cours());
+        holder.tvAuthor.setText("Created by "+ getCurrentAuthor(tests));
         String msg = tests.getQuestionsComplets().size() == 0 ? "Start adding some Questions ! Click here !"
                 : "This test contains "+tests.getQuestionsComplets().size() + " questions!";
         holder.tvMsg.setText(msg);
@@ -84,6 +84,7 @@ public class TestsCompletAdapter extends RecyclerView.Adapter<TestsCompletAdapte
         return null;
     }
 
+    /*
     private String getCurrentCours(TestsComplet testsComplet){
         for (Cours coursSingle: cours) {
             if (coursSingle.getId() == testsComplet.getTest().getAuthor()){
@@ -92,6 +93,13 @@ public class TestsCompletAdapter extends RecyclerView.Adapter<TestsCompletAdapte
         }
         return null;
     }
+    */
 
+    public LinkedList<TestsComplet> getTestsComplets() {
+        return testsComplets;
+    }
 
+    public void setTestsComplets(LinkedList<TestsComplet> testsComplets) {
+        this.testsComplets = testsComplets;
+    }
 }

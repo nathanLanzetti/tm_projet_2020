@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginStart="@dimen/large_margin_1"
+    android:layout_marginEnd="@dimen/large_margin_1"
+    android:layout_marginTop="@dimen/regular_padding_1"
+    android:layout_marginBottom="@dimen/regular_padding_1"
+    android:padding="@dimen/regular_padding_2"
+    android:id="@+id/question_layout"
+    android:background="@drawable/tests_card_bg">
+
+    <TextView
+        android:id="@+id/questionDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:paddingStart="@dimen/regular_padding_1"
+        android:paddingBottom="@dimen/regular_padding_1"
+        android:text="TextView"
+        android:textColor="@color/default_black_text"
+        android:textSize="@dimen/regular_plus_2_text"
+        app:layout_constraintEnd_toStartOf="@+id/actionButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/questionType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:paddingStart="@dimen/regular_padding_1"
+        android:paddingBottom="@dimen/regular_padding_1"
+        android:text="TextView"
+        android:textSize="@dimen/regular_plus_1_text"
+        app:layout_constraintEnd_toStartOf="@+id/actionButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionDetail" />
+
+    <TextView
+        android:id="@+id/solution"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/inner_paragraph_rect_bg"
+        android:backgroundTint="#fff"
+        android:drawableLeft="@drawable/ic_baseline_check_24"
+        android:drawablePadding="@dimen/regular_padding_2"
+        android:text="TextView"
+        android:textColor="@color/default_black_text"
+        android:textSize="@dimen/regular_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionType" />
+
+    <!--
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/actionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:backgroundTint="@color/faded_green"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/muted_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_add_24" />
+        -->
+
+    <ImageButton
+        android:id="@+id/actionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="@drawable/action_button_question"
+        android:backgroundTint="@color/faded_green"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/muted_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_add_24"
+        android:focusable="true" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

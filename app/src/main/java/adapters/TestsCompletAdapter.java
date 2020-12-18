@@ -1,16 +1,20 @@
 package adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyteaching.R;
+import com.example.easyteaching.SwitchActivity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -39,14 +43,23 @@ public class TestsCompletAdapter extends RecyclerView.Adapter<TestsCompletAdapte
         public final TextView tvCours;
         public final TextView tvAuthor;
         public final TextView tvMsg;
+        public final LinearLayout linearLayout;
         final TestsCompletAdapter testsCompletAdapter;
 
         public TestsCompletViewHolder(@NonNull View itemView, TestsCompletAdapter testsCompletAdapter) {
             super(itemView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(itemView.getContext(), "Clicked", Toast.LENGTH_SHORT);
+                }
+            });
             tvName = itemView.findViewById(R.id.testsCompletName);
             tvCours = itemView.findViewById(R.id.testsCompletCours);
             tvAuthor = itemView.findViewById(R.id.testsCompletAuthor);
             tvMsg = itemView.findViewById(R.id.testsCompletMsg);
+            linearLayout = itemView.findViewById(R.id.linear_layout_tests_card);
             this.testsCompletAdapter = testsCompletAdapter;
         }
     }
@@ -68,6 +81,15 @@ public class TestsCompletAdapter extends RecyclerView.Adapter<TestsCompletAdapte
         String msg = tests.getQuestionsComplets().size() == 0 ? "Start adding some Questions ! Click here !"
                 : "This test contains "+tests.getQuestionsComplets().size() + " questions!";
         holder.tvMsg.setText(msg);
+        // Set click listener for card
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(layoutInflater.getContext(), SwitchActivity.class);
+                intent.putExtra("testID", testsComplets.get(position).getTest().getId());
+                layoutInflater.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

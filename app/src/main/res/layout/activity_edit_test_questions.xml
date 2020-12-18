@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditTestQuestionsActivity">
+
+    <TextView
+        android:id="@+id/add_tests_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/default_black_text"
+        android:paddingTop="@dimen/large_margin_1"
+        android:paddingBottom="@dimen/large_margin_1"
+        android:text="@string/edit_questions_header"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="@dimen/text_header_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_padding_1"
+        android:drawableLeft="@drawable/save_24"
+        style="@style/MiniActionButton1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_tests_header" />
+
+    <Button
+        android:id="@+id/buttonRandom"
+        style="@style/MiniActionButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_padding_1"
+        android:drawableLeft="@drawable/shuffle_24"
+        android:textAlignment="viewEnd"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSave"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_tests_header" />
+
+    <Button
+        android:id="@+id/buttonPDF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_padding_1"
+        style="@style/MiniActionButton1"
+        android:drawableLeft="@drawable/pdf_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonSave"
+        app:layout_constraintTop_toBottomOf="@+id/add_tests_header" />
+
+        -->
+
+    <!--
+    <Spinner
+        android:id="@+id/spinnerFilter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/buttonPDF"
+        app:layout_constraintStart_toStartOf="@+id/buttonRandom"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSave" /> -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewQuestionsComplet"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSave" />
+
+    <ImageButton
+        android:id="@+id/buttonRandom"
+        style="@style/MiniActionButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/regular_padding_2"
+        android:background="@drawable/round_button"
+        android:padding="@dimen/regular_padding_2"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSave"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_tests_header"
+        app:srcCompat="@drawable/shuffle_24" />
+
+    <ImageButton
+        android:id="@+id/buttonSave"
+        style="@style/MiniActionButton1"
+        android:onClick="onClickSave"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/regular_padding_2"
+        android:background="@drawable/round_button"
+        android:padding="@dimen/regular_padding_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_tests_header"
+        app:srcCompat="@drawable/save_24" />
+
+    <ImageButton
+        android:id="@+id/buttonPDF"
+        style="@style/MiniActionButton1"
+        android:onClick="onClickSavePDF"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/regular_padding_2"
+        android:background="@drawable/round_button"
+        android:padding="@dimen/regular_padding_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonSave"
+        app:layout_constraintTop_toBottomOf="@+id/add_tests_header"
+        app:srcCompat="@drawable/pdf_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,9 +10,11 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
@@ -80,103 +82,21 @@ public class MainActivity extends AppCompatActivity {
                         //super.onPageSelected(position);
                         viewPager.setCurrentItem(position);
                         Log.i("CURRENT PAGE ", viewPager.getCurrentItem() + "");
-                        Toast.makeText(getApplicationContext(), "Selected : " + position, Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getApplicationContext(), "Selected : " + position, Toast.LENGTH_SHORT).show();
                     }
                 });
-
-                // Setting a listener for clicks.
-                //tabLayout.setupWithViewPager(viewPager);
-                //tabLayout.setupWithViewPager();
-                //viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-
-
-                /*
-                tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                    @Override
-                    public void onTabSelected(TabLayout.Tab tab) {
-                        Log.i("Tab COUNT", tab.parent.getSelectedTabPosition() + "");
-
-                        viewPager.setCurrentItem(tab.parent.getSelectedTabPosition());
-                    }
-
-                    @Override
-                    public void onTabUnselected(TabLayout.Tab tab) {
-
-                    }
-
-                    @Override
-                    public void onTabReselected(TabLayout.Tab tab) {
-
-                    }
-                });
-                */
-
-                //tabLayout.setupWithViewPager(viewPager);
-
             }
         });
-
-        /*
-        final LifecycleOwner context = this;
-        recyclerView = findViewById(R.id.recyclerViewTestsComplet);
-
-        final ProfesseursCompletRepository professeursCompletRepository = new ProfesseursCompletRepository();
-        professeursCompletRepository.query().observe(this, new Observer<List<Professeurs>>() {
-            @Override
-            public void onChanged(List<Professeurs> professeurs) {
-                Log.i("Professeurs Fetch", professeurs.toString());
-                Log.i("Professeurs Fetch", "");
-            }
-        });
-
-        // Declare Repos // Tests | Prof | Cours
-        TestsCompletRepository testsCompletRepository = new TestsCompletRepository();
-        final ProfesseursRepository professeursRepository = new ProfesseursRepository();
-        final CoursRepository coursRepository = new CoursRepository();
-
-        // Fetch Tests | Prof | Cours
-        testsCompletRepository.query().observe(this, new Observer<List<TestsComplet>>() {
-            @Override
-            public void onChanged(final List<TestsComplet> testsComplets) {
-                Log.i("Main activity TESTS", testsComplets.toString());
-                Log.i("Main activit test Q", testsComplets.get(0).getQuestionsComplets().toString());
-
-                // fetch profs
-                professeursRepository.query().observe(context, new Observer<List<Professeurs>>() {
-                    @Override
-                    public void onChanged(final List<Professeurs> professeurs) {
-                        Log.i("Main activity PROFS", professeurs.toString());
-                        // fecth cours
-                        coursRepository.query().observe(context, new Observer<List<Cours>>() {
-                            @Override
-                            public void onChanged(List<Cours> cours) {
-                                Log.i("Main activity COURS", cours.toString());
-                                // SetUp Recycler View
-                                setUpRecyclerView(testsComplets, professeurs, cours);
-                            }
-                        });
-                    }
-                });
-
-            }
-        });
-
-
-        /*
-        AuthenticationRepository authenticationRepository = new AuthenticationRepository();
-        authenticationRepository.login("godefroid.laurent@helha.be", "gogogo").observe(this, new Observer<Professeurs>() {
-            @Override
-            public void onChanged(Professeurs professeurs) {
-                Log.i("Authenticate", professeurs.getToken());
-            }
-        });
-        */
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    public void onFABAddTest(View view) {
+        Intent intent = new Intent(this, AddActivity.class);
+        startActivity(intent);
     }
 
     /*

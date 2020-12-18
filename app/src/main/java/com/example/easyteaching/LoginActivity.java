@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Wrong combination of mail/password", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
                 registerUserInPref(professeurs);
                 navigateToMainAndFinish();
             }

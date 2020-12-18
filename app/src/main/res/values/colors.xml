@@ -5,7 +5,10 @@
     <color name="colorAccent">#3179ee</color>
     <color name="secondary_pink">#ffb0b0</color>
     <color name="default_black_text">#3b3b3c</color>
+    <color name="muted_grey">#C4EAE9E9</color>
     <color name="default_red">#db3434</color>
+    <color name="default_green">#28a745</color>
+    <color name="faded_green">#49C365</color>
     <color name="secondary_blue">#3179ee</color>
     <color name="white">#fff</color>
 </resources>

@@ -9,4 +9,8 @@
     <dimen name="header_text_3">20sp</dimen>
     <dimen name="text_header_2">30sp</dimen>
     <dimen name="large_margin_1">15dp</dimen>
+    <dimen name="large_padding_1">30dp</dimen>
+    <dimen name="padding_large_3">20dp</dimen>
+    <dimen name="regular_plus_1_text">16sp</dimen>
+    <dimen name="regular_plus_2_text">18sp</dimen>
 </resources>

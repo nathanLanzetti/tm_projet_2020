@@ -14,4 +14,7 @@
     <string name="sign_in_button_login">Sign in</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_test_header">ADD TEST</string>
+    <string name="modify_test_header">MODIFY TEST</string>
+    <string name="edit_questions_header">EDIT QUESTIONS</string>
 </resources>

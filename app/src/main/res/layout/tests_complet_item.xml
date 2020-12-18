@@ -8,6 +8,7 @@
     android:layout_marginTop="@dimen/regular_padding_1"
     android:layout_marginBottom="@dimen/regular_padding_1"
     android:padding="@dimen/regular_padding_2"
+    android:id="@+id/linear_layout_tests_card"
     android:background="@drawable/tests_card_bg">
 
     <TextView

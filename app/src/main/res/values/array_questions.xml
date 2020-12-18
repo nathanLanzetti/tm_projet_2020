@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="questions_filter">
+        <item>ALL</item>
+        <item>ADDED</item>
+        <item>TO ADD</item>
+    </string-array>
+</resources>

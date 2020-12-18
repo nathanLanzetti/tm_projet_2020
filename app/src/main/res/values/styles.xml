@@ -13,4 +13,9 @@
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
+    <style name="MiniActionButton1">
+        <item name="android:textColor">#fff</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
 </resources>

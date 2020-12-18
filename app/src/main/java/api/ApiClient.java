@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String BASE_URL_API = "https://192.168.1.45:5001/api/";
+    private static final String BASE_URL_API = "http://192.168.1.45:5000/api/";
     private static final String BASE_URL_API_PHONE = "https://10.0.2.2:5001/api/";
     private static final String BASE_URL_API_PHONE_2 = "http://10.0.2.2:5000/api/";
 

@@ -27,9 +27,11 @@ import java.util.List;
 import adapters.TestsCompletAdapter;
 import model.Cours;
 import model.Professeurs;
+import model.Tests;
 import model.TestsComplet;
 import repository.ProfesseursCompletRepository;
 import repository.TestsCompletRepository;
+import repository.TestsRepository;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -150,6 +152,14 @@ public class TestsTabFragment extends Fragment {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 Log.i("SWIPIN", "Position : " +viewHolder.getAdapterPosition());
+                int idTest = linkedList.get(viewHolder.getAdapterPosition()).getTest().getId();
+                /*
+                linkedList.remove(viewHolder.getAdapterPosition());
+                testsCompletAdapter.setTestsComplets(linkedList);
+                testsCompletAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                */
+                // Delete Tests
+                onSwipeDeleteTest(idTest);
                 linkedList.remove(viewHolder.getAdapterPosition());
                 testsCompletAdapter.setTestsComplets(linkedList);
                 testsCompletAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
@@ -172,6 +182,18 @@ public class TestsTabFragment extends Fragment {
         });
 
         itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    private void onSwipeDeleteTest(int id) {
+        Log.i("POSITION", id + "");
+        final TestsRepository testsRepository = new TestsRepository();
+        Log.i("LINKED LIST", linkedList.toString());
+        for (TestsComplet testsComplet: linkedList) {
+            if (testsComplet.getTest().getId() == id){
+                Log.i("Heyoooo", "heyaaaaaaaaaaa");
+                testsRepository.delete(id);
+            }
+        }
     }
 
     public Cours getCours() {
